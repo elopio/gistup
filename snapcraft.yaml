@@ -1,0 +1,19 @@
+name: gistup
+version: master
+summary: Create a gist from terminal, then use git to update it.
+description: |
+  Create a gist from the command line! Then just use git to update it.
+
+grade: stable
+confinement: strict
+
+apps:
+  gistup:
+    command: env GIT_TEMPLATE_DIR=$SNAP/usr/share/git-core/templates gistup
+    plugs: [home, network]
+
+parts:
+  gistup:
+    source: .
+    plugin: nodejs
+    stage-packages: [git]
